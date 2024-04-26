@@ -10,14 +10,19 @@
 
 var src_default = {
 	async fetch(request) {
-		if (request.method == "POST") {
-			return new Response(JSON.stringify({ message: "POST request" }));
+		const requestHeaders = {}
+		request.headers.forEach((element, key) => {
+			requestHeaders[key] = element;
+		});
+
+		const data = {
+			method: request.method,
+			headers: requestHeaders,
 		}
-		else {
-			return new Response("Not a POST request");
-		}
+
+		return request.method === "POST" ? Response.json(data) : new Response("Not a POST request");
 	}
-};
+}
 
 
 export {
