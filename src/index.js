@@ -10,18 +10,13 @@
 
 var src_default = {
 	async fetch(request) {
-		const requestHeaders = {}
-		request.headers.forEach((element, key) => {
-			requestHeaders[key] = element;
-		});
+		return generateRandomNumber(request);
 
-		const data = {
-			method: request.method,
-			headers: requestHeaders,
-		}
-
-		return request.method === "POST" ? Response.json(data) : new Response("Not a POST request");
 	}
+}
+
+function generateRandomNumber(response) {
+	return new Response(`Random Number: ${Math.floor(Math.random() * 4)}`);
 }
 
 
