@@ -10,13 +10,22 @@
 
 var src_default = {
 	async fetch(request) {
-		return generateRandomNumber(request);
+		const tableCodes = {
+			0: '1',
+			1: '2',
+			2: '3',
+			3: '4',
+		};
+
+		return generateRandomNumber(request, tableCodes);
 
 	}
 }
 
-function generateRandomNumber(response) {
-	return new Response(`Random Number: ${Math.floor(Math.random() * 4)}`);
+function generateRandomNumber(response, tableCodes) {
+	const randomNumber = Math.floor(Math.random() * 4);
+
+	return new Response(`This is a random number between 1 - 4: ${tableCodes[randomNumber]}`);
 }
 
 
