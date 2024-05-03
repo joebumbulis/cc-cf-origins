@@ -9,12 +9,12 @@ var src_default = {
 		};
 
 		if (request.method === "GET") {
-			let generateRandomNumber = function (request, tableCodes) {
+			let generateRandomNumber = function (tableCodes) {
 				const randomNumber = Math.floor(Math.random() * 4);
 
 				return tableCodes[randomNumber];
 			};
-			return new Response(`Random Number Generated: ${generateRandomNumber(request, tableCodes)}`);
+			return new Response(`Random Number Generated: ${generateRandomNumber(tableCodes)}`);
 
 		} else {
 			return new Response("please use GET");
