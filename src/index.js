@@ -5,7 +5,7 @@ var src_default = {
 
 		const someCustomKey = `https://${url.hostname}${url.pathname}`;
 
-		let response = await this.fetch(request, {
+		let response = await fetch(request, {
 			cf: {
 				cacheTtl: 5,
 				cacheEverything: true,
@@ -13,12 +13,12 @@ var src_default = {
 			},
 		})
 
-		response = new Reponse(response.body, response)
+		response = new Response(response.body, response)
 
-		response.headers.set(`Cache-Control`, `max-age=1500`)
+		response.headers.set('Cache-Control', 'max-age=1500')
 
 		context.waitUntil(caches.default.put(request, response.clone()))
-
+		console.log("response", response);
 		return response
 	}
 };
