@@ -1,12 +1,14 @@
 // src/index.js
 var src_default = {
-	async fetch(request, env, context) {
+	async fetch(request) {
 		if (request.method === "GET") {
-			 const result = await fetch(request);
+			const origin = "www.joebumbulis.com";
+			const botRedirect = "https://httpbin.org/get";
+			const isBot = (request) => request.cf.botManagement.score < 30;
 
-			 
-			 console.log('result cf object', result.cf)
-			 return result
+			const target = isBot ? botRedirect : origin;
+
+			return new Response(target);
 		} else {
 			console.log('non-GET')
 		}
